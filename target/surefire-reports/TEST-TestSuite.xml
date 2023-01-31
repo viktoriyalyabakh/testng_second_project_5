@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="scripts.UnitedAirlinesTest" time="35.314" errors="0" skipped="0">
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="162.861" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home/jre/lib"/>
@@ -22,8 +22,7 @@
     <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home/jre/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
     <property name="java.io.tmpdir" value="/var/folders/jz/2js468655k14fct8ln7chms80000gn/T/"/>
-    <property name="line.separator" value="
-"/>
+    <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Mac OS X"/>
     <property name="classworlds.conf" value="/Applications/apache-maven-3.8.7/bin/m2.conf"/>
@@ -46,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_301.jdk/Contents/Home/jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test -PRegression"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -64,9 +63,9 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="scripts.UnitedAirlinesTest" name="validateMainMenu" time="3.404"/>
-  <testcase classname="scripts.UnitedAirlinesTest" name="validateBookTravelMenu" time="2.439"/>
-  <testcase classname="scripts.UnitedAirlinesTest" name="validateRadioButtonInBookTravelMenu" time="4.145"/>
-  <testcase classname="scripts.UnitedAirlinesTest" name="validateCheckboxes" time="6.141"/>
-  <testcase classname="scripts.UnitedAirlinesTest" name="validateOneWayTicket" time="19.185"/>
+  <testcase name="validateMainMenu" classname="scripts.UnitedAirlinesTest" time="2.622"/>
+  <testcase name="validateBookTravelMenu" classname="scripts.UnitedAirlinesTest" time="2.507"/>
+  <testcase name="validateRadioButtonInBookTravelMenu" classname="scripts.UnitedAirlinesTest" time="4.222"/>
+  <testcase name="validateCheckboxes" classname="scripts.UnitedAirlinesTest" time="7.325"/>
+  <testcase name="validateOneWayTicket" classname="scripts.UnitedAirlinesTest" time="19.319"/>
 </testsuite>

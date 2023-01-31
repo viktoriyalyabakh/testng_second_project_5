@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: scripts.UnitedAirlinesTest
+Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 171.872 sec
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 162.861 sec - in TestSuite

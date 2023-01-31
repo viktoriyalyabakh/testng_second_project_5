@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression">
+    <test verbose="2" preserve-order="true"
+          name="All functionality">
+        <classes>
+            <class name="scripts.UnitedAirlinesTest">
+                <methods>
+                    <include name="validateMainMenu"/>
+                    <include name="validateBookTravelMenu"/>
+                    <include name="validateRadioButtonInBookTravelMenu"/>
+                    <include name="validateCheckboxes"/>
+                    <include name="validateOneWayTicket"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

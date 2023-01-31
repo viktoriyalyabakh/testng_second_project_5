@@ -6,12 +6,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.UnitedAirlinesBasePage;
 import pages.UnitedAirlinesConformationPage;
+import utilities.Waiter;
 
 import java.util.stream.IntStream;
 
-public class UnitedAirlinesTest extends UnitedAirlinesBase{
+public class UnitedAirlinesTest extends UnitedAirlinesBase {
     @BeforeMethod
-    public void setPage(){
+    public void setPage() {
         unitedAirlinesPage = new UnitedAirlinesBasePage();
         unitedAirlinesConformPage = new UnitedAirlinesConformationPage();
     }
@@ -29,14 +30,12 @@ public class UnitedAirlinesTest extends UnitedAirlinesBase{
      */
 
     @Test(priority = 1, description = "Validate \"Main menu\" navigation items")
-    public void validateMainMenu(){
+    public void validateMainMenu() {
 
         IntStream.range(0, TextData.mainMenuText.length).forEach(i -> {
             Assert.assertTrue(unitedAirlinesPage.mainMenu.get(i).isDisplayed());
             Assert.assertEquals(unitedAirlinesPage.mainMenu.get(i).getText(), TextData.mainMenuText[i]);
         });
-
-
     }
 
     /**
@@ -50,7 +49,7 @@ public class UnitedAirlinesTest extends UnitedAirlinesBase{
      */
 
     @Test(priority = 2, description = "Validate \"Book travel menu\" navigation items")
-    public void validateBookTravelMenu(){
+    public void validateBookTravelMenu() {
 
         for (int i = 0; i < TextData.bookTravelMenuText.length; i++) {
             Assert.assertTrue(unitedAirlinesPage.bookTravelMenu.get(i).isDisplayed());
@@ -69,13 +68,13 @@ public class UnitedAirlinesTest extends UnitedAirlinesBase{
      */
 
     @Test(priority = 3, description = "Validate \"Round-trip\" and \"One-way\" radio buttons")
-    public void validateRadioButtonInBookTravelMenu(){
+    public void validateRadioButtonInBookTravelMenu() {
 
         IntStream.range(0, unitedAirlinesPage.bookTravelMenuRadioLabel.size()).forEach(i -> {
-        Assert.assertTrue(unitedAirlinesPage.bookTravelMenuRadioLabel.get(i).isDisplayed());
-        Assert.assertTrue(unitedAirlinesPage.bookTravelMenuRadioLabel.get(i).isEnabled());
-        Assert.assertEquals(unitedAirlinesPage.bookTravelMenuRadioLabel.get(i).getText(), TextData.radioButtonsText[i]);
-    });
+            Assert.assertTrue(unitedAirlinesPage.bookTravelMenuRadioLabel.get(i).isDisplayed());
+            Assert.assertTrue(unitedAirlinesPage.bookTravelMenuRadioLabel.get(i).isEnabled());
+            Assert.assertEquals(unitedAirlinesPage.bookTravelMenuRadioLabel.get(i).getText(), TextData.radioButtonsText[i]);
+        });
         Assert.assertTrue(unitedAirlinesPage.bookTravelMenuRadioInput.get(0).isSelected());
         Assert.assertFalse(unitedAirlinesPage.bookTravelMenuRadioInput.get(1).isSelected());
 
@@ -97,7 +96,7 @@ public class UnitedAirlinesTest extends UnitedAirlinesBase{
      */
 
     @Test(priority = 4, description = "Validate \"Book with miles\" and \"Flexible dates\" checkboxes")
-    public void validateCheckboxes(){
+    public void validateCheckboxes() {
 
         for (int i = 0; i < unitedAirlinesPage.bookTravelMenuCheckboxLabel.size(); i++) {
             Assert.assertTrue(unitedAirlinesPage.bookTravelMenuRadioLabel.get(i).isDisplayed());
@@ -107,11 +106,11 @@ public class UnitedAirlinesTest extends UnitedAirlinesBase{
             unitedAirlinesPage.bookTravelMenuCheckboxLabel.get(i).click();
         }
 
-        IntStream.range(0, unitedAirlinesPage.bookTravelMenuCheckboxLabel.size()).forEach(i ->{
+        IntStream.range(0, unitedAirlinesPage.bookTravelMenuCheckboxLabel.size()).forEach(i -> {
             Assert.assertTrue(unitedAirlinesPage.bookTravelMenuCheckboxInput.get(i).isSelected());
             unitedAirlinesPage.bookTravelMenuCheckboxLabel.get(i).click();
             Assert.assertFalse(unitedAirlinesPage.bookTravelMenuCheckboxInput.get(i).isSelected());
-    });
+        });
     }
 
     /**
@@ -129,25 +128,28 @@ public class UnitedAirlinesTest extends UnitedAirlinesBase{
      */
 
     @Test(priority = 5, description = "Validate One-way ticket search results from Chicago, IL, US (ORD) to Miami, FL, US (MIA)")
-    public  void validateOneWayTicket(){
+    public void validateOneWayTicket() {
 
         unitedAirlinesPage.bookTravelMenuRadioInput.get(1).click();
-        unitedAirlinesPage.bookTravelMenuDestinationInput.get(0).clear();
-        unitedAirlinesPage.bookTravelMenuDestinationInput.get(0).sendKeys("Chicago, IL, US (ORD)");
-        unitedAirlinesPage.bookTravelMenuDestinationInput.get(1).clear();
-        unitedAirlinesPage.bookTravelMenuDestinationInput.get(1).sendKeys("Miami, FL, US (MIA)");
+
+        IntStream.range(0, unitedAirlinesPage.bookTravelMenuDestinationInput.size()).forEach(i -> {
+            unitedAirlinesPage.bookTravelMenuDestinationInput.get(i).clear();
+            unitedAirlinesPage.bookTravelMenuDestinationInput.get(i).sendKeys(TextData.departmentData[i]);
+        });
+
         unitedAirlinesPage.dateInput.click();
         unitedAirlinesPage.clearDateButton.click();
         unitedAirlinesPage.dateInput.sendKeys("Feb 28");
         unitedAirlinesPage.travelerSelectorButton.click();
         unitedAirlinesPage.clickOnPassenger("Adult", "2");
-        unitedAirlinesPage.clickOnPassenger("Senior", "2");
-        unitedAirlinesPage.clickOnPassenger("(5 - 11)", "2");
         unitedAirlinesPage.cabinTypeDropdown.click();
         unitedAirlinesPage.clickOnCabinTypeOption("Business");
         unitedAirlinesPage.findFlightsButton.click();
-       // Assert.assertEquals(unitedAirlinesConformPage.conformationDate.getText(), "DEPART ON: February 28");
 
+        Waiter.waitForVisibilityOfElement(unitedAirlinesConformPage.conformationDate, 30);
+        Waiter.pause(2);
+
+        Assert.assertEquals(unitedAirlinesConformPage.conformationDate.getText(), "DEPART ON: February 28");
     }
-    }
+}
 

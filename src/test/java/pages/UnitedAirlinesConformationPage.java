@@ -9,7 +9,7 @@ public class UnitedAirlinesConformationPage extends UnitedAirlinesBasePage{
         super();
     }
 
-    @FindBy(css = "div[class*='ColumnSortResultHeader-styles_']")
+    @FindBy(css = "div[class*='Left--3']>div")
     public WebElement conformationDate;
 
 }
